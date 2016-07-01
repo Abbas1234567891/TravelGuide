@@ -1,0 +1,11 @@
+package com.tcs.travelguidefinalcode;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Created by 1256088 on 6/29/2016.
+ */
+public class Utils {
+  public static  List<WeatherReport> myList = new ArrayList<WeatherReport>();
+}
