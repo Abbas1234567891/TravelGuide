@@ -1,0 +1,149 @@
+package com.tcs.travelguidefinalcode;
+
+import android.app.SearchManager;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnCallBackInterface {
+
+    private TextView mHeading;
+
+    private Button mCity;
+    private Button mHotels;
+    private Button mFood;
+    private Button mAttractions;
+    private Button mNightLife;
+    private Button mShopping;
+    private Button mHistoricalPlaces;
+    private Button mCheckWeather;
+    private Button mBack;
+    private EditText mSearch;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mHeading = (TextView) findViewById(R.id.textviewone);
+
+        mCity = (Button) findViewById(R.id.buttonone);
+        mHotels = (Button) findViewById(R.id.buttontwo);
+        mFood = (Button) findViewById(R.id.buttonthree);
+        mAttractions = (Button) findViewById(R.id.buttonfour);
+        mNightLife = (Button) findViewById(R.id.buttonfive);
+        mShopping = (Button) findViewById(R.id.buttonsix);
+        mHistoricalPlaces = (Button) findViewById(R.id.buttonseven);
+        mCheckWeather = (Button) findViewById(R.id.buttoneight);
+        mBack = (Button) findViewById(R.id.buttonnine);
+        mSearch = (EditText) findViewById(R.id.edittextone);
+        mBack.setOnClickListener(this);
+
+        mCheckWeather.setOnClickListener(this);
+
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.buttoneight:
+                retrieveWeatherReport();
+                break;
+            case R.id.buttonnine:
+                onSearch(v);
+
+        }
+
+    }
+
+    public void onSearch(View v) {
+        try {
+            Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+            String term = mSearch.getText().toString();
+            intent.putExtra(SearchManager.QUERY, term);
+            startActivity(intent);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+
+    }
+
+
+
+    public void retrieveWeatherReport(){
+        String city = mSearch.getText().toString();
+        String url = "http://api.openweathermap.org/data/2.5/forecast/daily?q="+city+"&APPID=12b9741deaa38ff08f23b2e9c7880e59";
+        new NetworkCallAsync(this,this).execute(url);
+}
+
+    @Override
+    public void onDataRecieved(String s) {
+        try{
+            JSONObject jsonobject = new JSONObject(s);
+            JSONObject mycity = jsonobject.getJSONObject("city");
+            String cityName = mycity.getString("name");
+            JSONArray list = jsonobject.getJSONArray("list");
+            int a = list.length();
+
+            for(int i=0;i<a;i++){
+                JSONObject tempobj = list.getJSONObject(i);
+                JSONObject main = tempobj.optJSONObject("main");
+                double temperature = main.getDouble("temp");
+                JSONArray weather = tempobj.getJSONArray("weather");
+                int icon = R.drawable.raining;
+                String updatedOn = tempobj.getString("dt_txt");
+                WeatherReport w = new WeatherReport(cityName,temperature,updatedOn,icon);
+                Utils.myList.add(w);
+            }
+
+            Intent i = new Intent(getApplicationContext(), Main2Activity.class);
+            startActivity(i);
+
+
+
+
+
+
+        }
+        catch(JSONException e){
+
+        }
+
+
+
+    }
+}
