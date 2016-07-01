@@ -1,0 +1,129 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/textviewone"
+        android:text="Travel Guide"
+        android:textSize="20sp"
+        android:gravity="center"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:id="@+id/edittextone"
+        android:layout_marginTop="60dp"
+        android:hint="Search"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearlayoutone"
+        android:weightSum="2"
+        android:layout_marginTop="140dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonone"
+            android:layout_weight="1"
+            android:text="About City"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttontwo"
+            android:layout_weight="1"
+            android:text="Hotels"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearlayouttwo"
+        android:weightSum="2"
+        android:layout_marginTop="210dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonthree"
+            android:layout_weight="1"
+            android:text="Food"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonfour"
+            android:layout_weight="1"
+            android:text="Attractions"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearlayoutthree"
+        android:weightSum="2"
+        android:layout_marginTop="270dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonfive"
+            android:layout_weight="1"
+            android:text="Night Life"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonsix"
+            android:layout_weight="1"
+            android:text="Shopping"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/linearlayoutfive"
+        android:weightSum="2"
+        android:layout_marginTop="330dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttonseven"
+            android:layout_weight="1"
+            android:text="Historical Places"/>
+
+        <Button
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+            android:id="@+id/buttoneight"
+            android:layout_weight="1"
+            android:text="Check Weather"/>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="40dp"
+        android:id="@+id/buttonnine"
+        android:text="Back"
+        android:layout_marginTop="390dp"/>
+
+
+
+
+</RelativeLayout>
