@@ -1,0 +1,50 @@
+package com.tcs.travelguidefinalcode;
+
+/**
+ * Created by 1256088 on 6/29/2016.
+ */
+public class WeatherReport {
+    private String name;
+    private double temperature;
+    private String updatedOn;
+    private int icon;
+
+    public WeatherReport(String name, double temperature, String updatedOn, int icon) {
+        this.name = name;
+        this.temperature = temperature;
+        this.updatedOn = updatedOn;
+        this.icon = icon;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getTemperature() {
+        return temperature;
+    }
+
+    public void setTemperature(double temperature) {
+        this.temperature = temperature;
+    }
+
+    public String getUpdatedOn() {
+        return updatedOn;
+    }
+
+    public void setUpdatedOn(String updatedOn) {
+        this.updatedOn = updatedOn;
+    }
+
+    public int getIcon() {
+        return icon;
+    }
+
+    public void setIcon(int icon) {
+        this.icon = icon;
+    }
+}
